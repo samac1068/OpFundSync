@@ -1,5 +1,8 @@
 # Opfundsync
 
+## Project Info
+This is version 3 of this project (Flex - 1 and 2019 - 2), using the latest version of Angular, Node, and Typescript. This project had to be recreated as upgrading from version 7 generated a large number of issues that made it difficult to recover from, to include changes in bootstrapping, which was plaguing Angular 14. Currently, bootstrap is installed and operating as expected.  Will need to slowly incorporate the previous functionality, one section at a time, to avoid crashing the app. 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.5.
 
 ## Development server
