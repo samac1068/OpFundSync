@@ -1,0 +1,149 @@
+<div class="container page">
+  <form [formGroup]="dampsFormGrp">
+    <div class="row">
+      <div class="col-lg">
+        <span class="setleft" style="font-weight: bold">ID:
+          <input matInput id="ID" formControlName="ID" style="border: none; outline: none; background: none;"  (focusout)="textChanges($event)">
+        </span>
+      </div>
+      <div class="col-lg">
+        <mat-checkbox id="UIC_ToNipr" formControlName="UIC_ToNipr" (change)="storeAllChanges($event)">To NIPR</mat-checkbox>
+        <mat-checkbox id="opHidden" class="setright" style="font-weight: bold" formControlName="opHidden" (change)="storeAllChanges($event)">Hidden</mat-checkbox>
+      </div>
+    </div>
+
+    <br/>
+      <!-- Description -->
+      <div class="row g-0">
+        <div class="col-lg">
+          <mat-form-field appearance="outline">
+            <mat-label>Description:</mat-label>
+            <input matInput id="Description" formControlName="Description" style="font-size: 12px; margin-top: 5px;"  (focusout)="textChanges($event)">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Operations -->
+      <div class="row g-0">
+        <div class="col-lg">
+          <mat-form-field>
+            <mat-label>Operation</mat-label>
+            <mat-select id="Op_ID" formControlName="Op_ID" (selectionChange)="storeAllChanges($event)">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let op of opsdll" [value]="op.op_id">
+                {{ op.operation_long }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="Op_ID.hasError('required')">Please choose an Operation</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Cycle -->
+      <div class="row g-0">
+        <div class="col-lg formfield">
+          <mat-form-field>
+            <mat-label>Cycle</mat-label>
+            <mat-select id="Cyc_ID" formControlName="Cyc_ID" (selectionChange)="storeAllChanges($event)">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let c of cycledll" [value]="c.cyc_id">
+                {{ c.cycle }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="Cyc_ID.hasError('required')">Please choose a Cycle</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Pay -->
+      <div class="row g-0">
+        <div class="col-lg">
+          <mat-form-field>
+            <mat-label>Pay</mat-label>
+            <mat-select id="PAY_Operation_ID" formControlName="PAY_Operation_ID" (selectionChange)="storeAllChanges($event)">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let p of paydll" [value]="p.PAY_Operation_ID">
+                {{ p.PAY_Operation_Description | uppercase }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="PAY_Operation_ID.hasError('required')">Please choose a PAY</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- TCS -->
+      <div class="row g-0">
+        <div class="col-lg">
+          <mat-form-field>
+            <mat-label>TCS</mat-label>
+            <mat-select id="TCS_Operation_ID" formControlName="TCS_Operation_ID" (selectionChange)="storeAllChanges($event)">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let t of tcsdll" [value]="t.TCS_Operation_ID">
+                {{ t.TCS_Operation_Description | uppercase }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="TCS_Operation_ID.hasError('required')">Please choose a TCS</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- CONUSA -->
+      <div class="row g-0">
+        <div class="col-lg">
+          <mat-form-field>
+            <mat-label>CONUSA</mat-label>
+            <mat-select id="Conusa_OpID" formControlName="Conusa_OpID" (selectionChange)="storeAllChanges($event)">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let co of conusadll" [value]="co.opId">
+                {{ co.opLongName | uppercase}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="Conusa_OpID.hasError('required')">Please choose a CONUSA</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- MOBCAP -->
+      <div class="row g-0">
+        <div class="col-lg">
+          <mat-form-field appearance="fill" style="width:35%; float: right;">
+            <mat-label>MOBCAP:</mat-label>
+            <input matInput id="MOBCAP" formControlName="MOBCAP" style="font-size: 12px;"  (focusout)="textChanges($event)">
+          </mat-form-field>
+        </div>
+      </div>
+
+    <span style="font-weight: bold">Mob Authorities</span>
+    <mat-card>
+      <div class="row g-0">
+        <div class="col-sm">
+          <mat-checkbox id="ma12301_d" formControlName="ma12301_d" required (change)="storeAllChanges($event)">12301(D)</mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox id="ma12302" formControlName="ma12302" (change)="storeAllChanges($event)">12302</mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox id="ma12304" formControlName="ma12304" (change)="storeAllChanges($event)">12304</mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox id="ma12304_a" formControlName="ma12304_a" (change)="storeAllChanges($event)">12304(A)</mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox id="ma12304_b" formControlName="ma12304_b" (change)="storeAllChanges($event)">12304(B)</mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox id="ma12302_Border" formControlName="ma12302_Border" (change)="storeAllChanges($event)">12302 Border</mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox id="ma12302_Corona" formControlName="ma12302_Corona" (change)="storeAllChanges($event)">12302 Corona</mat-checkbox>
+        </div>
+        <div class="col-sm">
+          <mat-checkbox id="ma12302_Counterdrug" formControlName="ma12302_Counterdrug" (change)="storeAllChanges($event)">12302 Counterdrug</mat-checkbox>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+
+  <!-- Button Group -->
+  <app-btn-group [isNewRecord]="isNewRecord"></app-btn-group>
+</div>

@@ -1,0 +1,70 @@
+<div class="container page">
+  <form [formGroup]="ordersFormGrp">
+    <div class="row">
+          <div class="col-lg">
+            <span class="setleft" style="font-weight: bold">ID:
+                <input matInput formControlName="ID" style="border: none; outline: none; background: none;" (focusout)="textChanges($event)">
+            </span>
+          </div>
+          <div class="col-lg">
+            <mat-checkbox id="isVisible" formControlName="isVisible" class="setright" style="font-weight: bold" (change)="storeAllChanges($event)">Visible</mat-checkbox>
+          </div>
+    </div>
+
+    <!-- Operations -->
+    <div class="row">
+      <div class="col-lg">
+          <mat-form-field style="width:100%">
+              <mat-label>Operation</mat-label>
+              <mat-select id="op_id" formControlName="op_id" (selectionChange)="storeAllChanges($event)">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let o of opdll" [value]="o.op_id">
+                  {{ o.operation }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="op_id.hasError('required')">Please choose an Operation</mat-error>
+            </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Cycle -->
+    <div class="row">
+        <div class="col-lg">
+            <mat-form-field style="width:100%">
+                <mat-label>Cycle</mat-label>
+                <mat-select id="cyc_id" formControlName="cyc_id" (selectionChange)="storeAllChanges($event)">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let c of cycledll" [value]="c.cyc_id">
+                    {{ c.cycle }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="cyc_id.hasError('required')">Please choose a Cycle</mat-error>
+              </mat-form-field>
+        </div>
+      </div>
+
+    <!-- DAMPS -->
+    <div class="row">
+        <div class="col-lg">
+            <mat-form-field style="width:100%">
+                <mat-label>Assigned Damps</mat-label>
+                <mat-select id="fpop_id" formControlName="fpop_id" (selectionChange)="storeAllChanges($event)">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let d of dampsdll" [value]="d.ID">
+                    {{ d.Description | uppercase }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="fpop_id.hasError('required')">Please choose a DAMPS Op</mat-error>
+              </mat-form-field>
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="col-lg">
+        <mat-checkbox id="planIdChk" (change)="storeAllChanges($event)" formControlName="planIdChk">Visible in Planning</mat-checkbox>
+      </div>
+    </div>
+  </form>
+  <!-- Button Group -->
+  <app-btn-group [isNewRecord]="isNewRecord"></app-btn-group>
+</div>

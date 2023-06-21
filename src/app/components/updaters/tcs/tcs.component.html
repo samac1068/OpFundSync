@@ -1,0 +1,28 @@
+<div class="container page">
+  <div class="row">
+        <div class="col-lg"><span class="setleft" style="font-weight: bold">ID: <span class="idtxt">{{ selRec.TCS_Operation_ID }}</span></span></div>
+  </div>
+
+  <!-- Pay Operation -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Operation:</mat-label>
+        <input matInput id="operation" [formControl]="opControl" [(ngModel)]="selRec.TCS_Operation" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Pay Description -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Description:</mat-label>
+        <input matInput id="description" [formControl]="descControl" [(ngModel)]="selRec.TCS_Operation_Description" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Button Group -->
+  <app-btn-group [isNewRecord]="isNewRecord"></app-btn-group>
+</div>

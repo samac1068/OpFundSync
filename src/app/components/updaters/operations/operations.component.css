@@ -1,0 +1,36 @@
+.page {
+    font-size: 11px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.setleft {
+    float: left;
+    margin-left: 2px;
+}
+
+.setright {
+    float: right;
+    margin-right: 5px;
+}
+
+.idtxt {
+    color: grey;
+}
+
+.fieldTitle {
+  font-weight: bold;
+  font-size: 12px;
+  width: 130px;
+}
+
+.fieldInput {
+  border: 0.5px solid lightgray;
+  font-size: 12px;
+  color: black;
+  width: 250px;
+}
+
+.sptrow {
+  margin-bottom: 10px;
+}

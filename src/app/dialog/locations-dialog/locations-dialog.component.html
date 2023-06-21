@@ -1,0 +1,78 @@
+<div id="searchcontainer" class="scontainer">
+    <!-- Search Mission Location -->
+    <div>
+        <div>
+            <label class="searchlbl" for="txtSearchParam">Search Mission Location: </label>
+            <input id="txtSearchParam" class="searchinput" [(ngModel)]='searchTxt'>
+            <button id="btnSearch" class="btn btnCustom specialBtn" (click)="executeSearch()">Search</button>
+            <button id="btnReset" class="btn btnCustom specialBtn" (click)="resetSearch()">Reset</button>
+        </div>
+        <div>
+            <label class="infotext">When searching for a location, use key parts of the location such as 'Shelby' instead of 'Camp Shelby' or 'Shelbyville'.</label>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="searched">
+        <div class="row rowStyle">
+            <!-- Existing Similar Mission Location -->
+            <div id="divExist" *ngIf="searched" class="col">
+                <label class="grpTitle">Existing Similar Mission Locations</label>
+                <table id="tblExist">
+                    <thead>
+                        <tr class="mat-header-cell">
+                            <th class="mat-header-cell">Installation Name</th>
+                            <th class="mat-header-cell" style="width: 50px">State</th>
+                            <th class="mat-header-cell" style="width: 80px">Country</th>
+                            <th class="mat-header-cell">Type Of Installation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let existEle of searchExist;" class="mat-cell">
+                            <td class="cellText">{{ existEle.Installation }}</td>
+                            <td class="cellText">{{ existEle.StateAB }}</td>
+                            <td class="cellText">{{ existEle.Country }}</td>
+                            <td class="cellText">{{ existEle.InstallationType }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Possible Mission Location Matches -->
+            <div id="divPossible" *ngIf="searched" class="col">
+                <label class="grpTitle">Possible Mission Location Matches</label>
+                <table id="tblPossible">
+                    <thead>
+                        <tr class="mat-header-cell">
+                            <th class="mat-header-cell" style="width:40px">Sel</th>
+                            <th class="mat-header-cell">Installation Name</th>
+                            <th class="mat-header-cell" style="width: 50px">State</th>
+                            <th class="mat-header-cell" style="width: 80px">Country</th>
+                            <th class="mat-header-cell">Type Of Installation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let possEle of searchPoss;" class="mat-cell">
+                            <td class="checkCell"><mat-checkbox (click)="recordSelected(possEle)"></mat-checkbox></td>
+                            <td class="cellText">{{ possEle.Installation }}</td>
+                            <td class="cellText">{{ possEle.StateAB }}</td>
+                            <td class="cellText">{{ possEle.Country }}</td>
+                            <td class="cellText">{{ possEle.InstallationType }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr *ngIf="searched" />
+    <div style="float:right; margin-right: 10px;">
+        <button id="btnAddLocation" class="btn btnCustom specialBtn" [disabled]="locationSelected.length == 0" *ngIf="searched" (click)="addSelectedLocations()">Add Location</button>
+        <button id="btnClose" class="btn btnCustom specialBtn" (click)="closeSearch()">Close</button>
+    </div>
+</div>
+
+<div class="filter" *ngIf="searching">
+  <div class="spinner">
+    <mat-progress-spinner class="custom-spinner" color="primary" mode="indeterminate"></mat-progress-spinner>
+  </div>
+</div>

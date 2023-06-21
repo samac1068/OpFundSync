@@ -1,0 +1,75 @@
+<div class="container page">
+  <div class="row">
+        <div class="col-4">
+          <span class="setleft" style="font-weight: bold" *ngIf="!selRec.isNewRecord">PID: <span class="idtxt">{{ selRec.PID }}</span></span>
+          <mat-form-field appearance="outline" class="pidfield" *ngIf="selRec.isNewRecord">
+            <mat-label>PID:</mat-label>
+            <input matInput id="pid" [formControl]="pidControl" [(ngModel)]="selRec.PID"  class="pidfield" (focusout)="textChanges($event)">
+          </mat-form-field>
+        </div>
+        <div class="col-4"><mat-checkbox id="active" style="font-weight: bold" [(ngModel)]="selRec.ACTIVE" (change)="storeAllChanges($event)">Active</mat-checkbox></div>
+        <div class="col-4"><mat-checkbox id="deploy" style="font-weight: bold" [(ngModel)]="selRec.DEPLOY" (change)="storeAllChanges($event)">Deploy</mat-checkbox></div>
+  </div>
+
+  <!-- Name Short -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Description Short:</mat-label>
+        <input matInput id="nmshort" [formControl]="nmshortControl" [(ngModel)]="selRec.DESCRIPTION_SHORT" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Name Long -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Description Long:</mat-label>
+        <input matInput id="nmlong" [formControl]="nmlongControl" [(ngModel)]="selRec.DESCRIPTION_LONG" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Operations -->
+  <div class="row">
+    <div class="col-lg">
+        <mat-form-field style="width:100%">
+          <mat-label>Operation</mat-label>
+          <mat-select id="operation" [formControl]="opControl" [(ngModel)]="selRec.operation_id" (selectionChange)="storeAllChanges($event)">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let op of operations" [value]="op.op_id">
+              {{ op.operation_long }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+  </div>
+
+  <!-- CDATE, TPFDD TYPE -->
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Type:</mat-label>
+        <mat-select id="optype" [formControl]="typeControl" [(ngModel)]="selRec.TYPE" (selectionChange)="storeAllChanges($event)">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let type of tpfddtypes" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>CDATE:</mat-label>
+        <input matInput id="cdate" [matDatepicker]="picker" placeholder="Choose a CDATE" [(ngModel)]="convertedDt" (dateChange)="textChanges($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Button Group -->
+  <app-btn-group [isNewRecord]="isNewRecord"></app-btn-group>
+</div>

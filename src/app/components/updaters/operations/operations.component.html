@@ -1,0 +1,63 @@
+<div class="container page">
+  <div class="row">
+        <div class="col-3"><span class="setleft" style="font-weight: bold">ID: <span class="idtxt">{{ selRec.op_id }}</span></span></div>
+        <div class="col-3"><mat-checkbox id="tonipr" style="font-weight: bold" [(ngModel)]="selRec.toNIPR" (change)="storeAllChanges($event)">To NIPR</mat-checkbox></div>
+        <div class="col-3"><mat-checkbox id="crc" style="font-weight: bold" [(ngModel)]="selRec.CRC" (change)="storeAllChanges($event)">In CRC</mat-checkbox></div>
+        <div class="col-3"><mat-checkbox id="unitreqvisible" style="font-weight: bold" [(ngModel)]="selRec.unitrqmt_visible"
+          (change)="storeAllChanges($event)">Unit Req Visible</mat-checkbox></div>
+  </div>
+
+  <!-- Operation Name Short -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Operation Short:</mat-label>
+        <input matInput id="opshort" [formControl]="opshortControl" [(ngModel)]="selRec.operation" (focusout)="textChanges($event)"
+               oninput="this.value = this.value.toUpperCase()">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Operation Name Long -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Operation Long:</mat-label>
+        <input matInput id="oplong" [formControl]="oplongControl" [(ngModel)]="selRec.operation_long" (focusout)="textChanges($event)"
+               oninput="this.value = this.value.toUpperCase()">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Support Fields -->
+  <div id="supportFields">
+    <div class="row sptrow" >
+      <!-- New entry fields for the operation -->
+      <div class="col-4 fieldTitle">Support Command:</div>
+      <div class="col">
+        <mat-select id="sptcmd" [(value)]="selRec.sptcmdid"  (selectionChange)="storeAllChanges($event)" class="fieldInput" >
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let c of commands" [value]="c.CommandID">
+            {{ c.CommandName }}
+          </mat-option>
+        </mat-select>
+      </div>
+    </div>
+    <div class="row sptrow">
+      <div class="col-4 fieldTitle">Funding:</div>
+      <div class="col">
+        <input matInput id="funding" class="fieldInput" maxlength="10" size="10" [(ngModel)]="selRec.funding"
+               (focusout)="textChanges($event)" oninput="this.value = this.value.toUpperCase()" />
+      </div>
+    </div>
+    <div class="row sptrow">
+      <div class="col-4 fieldTitle">MOBSlide OpName:</div>
+      <div class="col"><input matInput id="mobslideopname" class="fieldInput" [(ngModel)]="selRec.mobslide_opname"
+                              (focusout)="textChanges($event)" oninput="this.value = this.value.toUpperCase()" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Button Group -->
+  <app-btn-group [isNewRecord]="isNewRecord"></app-btn-group>
+</div>

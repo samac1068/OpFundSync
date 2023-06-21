@@ -1,0 +1,41 @@
+.page {
+    font-size: 11px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.setleft {
+    float: left;
+    margin-left: 2px;
+}
+
+.setright {
+    float: right;
+    margin-right: 5px;
+}
+
+.idtxt {
+    color: grey;
+}
+
+/* MATERIAL FORM */
+mat-form-field {
+  width: 100%;
+  font-size: 12px;
+}
+
+mat-card {
+  background-color: #CADEB5;
+}
+
+mat-select, matInput, mat-option {
+  font-size: 12px;
+  max-height: 25px;
+}
+
+mat-checkbox, mat-checkbox-frame, mat-checkbox-checked, mat-checkbox-background {
+  transform: scale(.9);
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 10px;
+}

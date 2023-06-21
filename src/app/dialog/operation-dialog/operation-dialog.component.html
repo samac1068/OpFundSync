@@ -1,0 +1,71 @@
+<div style="overflow: hidden">
+  <div class="title">
+      Operation/Location Management Dialog
+  </div>
+
+  <mat-card style="overflow: hidden">
+    <mat-card-header>
+      <mat-card-title>Operation: {{ selOp.operation }}</mat-card-title>
+      <mat-card-subtitle>{{ selOp.operation_long }} (<span class="idtext">ID:{{ selOp.op_id }}</span>)</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div id="supportFields">
+        <div class="row" >
+          <!-- New entry fields for the operation -->
+          <div class="col-4 fieldTitle">Support Command:</div>
+          <div class="col">
+            <mat-select id="sptcmd" [(value)]="selOp.sptcmdid"  class="fieldInput" >
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let c of commands" [value]="c.CommandID">
+                {{ c.CommandName }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 fieldTitle">Funding:</div>
+          <div class="col">
+            <input matInput id="funding" class="fieldInput" [(ngModel)]="selOp.funding" maxlength="10" oninput="this.value = this.value.toUpperCase()"/>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px">
+          <div class="col-4 fieldTitle">MOBSlide OpName:</div>
+          <div class="col">
+            <input matInput id="mobslideopname" class="fieldInput" [(ngModel)]="selOp.mobslide_opname" maxlength="50" oninput="this.value = this.value.toUpperCase()"/>
+          </div>
+        </div>
+        <div class="row">
+          <table style="width: 75%; text-align: center; margin-left: 50px;">
+            <tr>
+              <td style="width: 22%"><mat-checkbox id="UIC_ToNipr" [(ngModel)]="selOp.toNIPR"><span class="fieldTitle">To NIPR</span></mat-checkbox></td>
+              <td style="width: 22%"><mat-checkbox id="CRC" [(ngModel)]="selOp.CRC"><span class="fieldTitle">In CRC</span></mat-checkbox></td>
+              <td style="width: 22%"><mat-checkbox id="opHidden" class="setright" style="font-weight: bold" [(ngModel)]="selOp.unitrqmt_visible"><span class="fieldTitle">Visible</span></mat-checkbox></td>
+              <td><button mat-raised-button color="primary" class="localButton" (click)="processUpdateSptFields()" title="Click to submit changes">Update</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="assignment">
+        <div id="leftlabel">Current Assigned: {{ assignedCount }}</div>
+        <div id="rightlabel">Available: {{ availCount }}</div>
+      </div>
+
+      <div id="spacer">&nbsp;</div>
+
+      <div id="divOps" style="margin-top: 10px;">
+        <div class="listbox" *ngIf="!curListBuilt"><span class="standby">Stand By Loading Assignment Information</span></div>
+        <div class="listbox" *ngIf="curListBuilt">
+          <dual-list [source]="locations" [(destination)]="currList" [format]="dlFormat" [height]="dlHeight" key="lngMissionLocationID"
+          display="strMissionLocation" [sort]="true" (destinationChange)="processRequestedChange()"></dual-list>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-footer>
+       <button class="doneBtn btnCustom" (click)="updateAndClose()" title="Click to close dialog and reload list.">Done</button>
+    </mat-card-footer>
+  </mat-card>
+</div>

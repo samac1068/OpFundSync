@@ -1,0 +1,53 @@
+.bannerbar
+{
+    width: 100%;
+    height: 75px;
+    background-color: #CADEB5;
+    overflow: hidden;
+}
+
+.titleimage
+{
+    margin-top: 16px;
+    margin-left: 11px;
+}
+
+.titleimageshadow
+{
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.versiontxt 
+{
+    font-size: 11px;
+    color: #890043;
+    margin-left: 45px;
+    margin-top: 55px;
+    position: absolute;
+    font-weight: bold;
+}
+
+.testtxt
+{
+    font-size: 11px;
+    color: red;
+    margin-left: 200px;
+    margin-top: 55px;
+    position: absolute;
+}
+
+.mdisButton
+{
+    float:right; 
+    margin-right: 5px; 
+    margin-top:15px; 
+    border:0;
+    cursor: pointer;
+}
+
+.mdisButton:active
+{
+    transform: translate(2px, 1px);
+}

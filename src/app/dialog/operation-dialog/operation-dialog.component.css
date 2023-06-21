@@ -1,0 +1,89 @@
+.doneBtn {
+    float:right;
+    margin-right: 10px;
+    margin-top: 30px;
+    width: 120px;
+}
+
+.listBox {
+    border: 1px solid gray;
+    padding-top: 30px;
+}
+
+.title {
+    font-size: 22px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.idtext {
+    font-size: 10px;
+    font-style: italic;
+}
+
+.operationtitle {
+    font-size: 16px;
+    color: gray;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#leftlabel {
+  display: inline-block;
+  margin-left: 80px;
+}
+
+#rightlabel {
+  display: inline-block;
+  margin-left: 180px;
+}
+
+.assignment {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#spacer {
+    height: 10px;
+}
+
+.fieldTitle {
+  font-weight: bold;
+  font-size: 11px;
+  width: 130px;
+  text-align: right;
+}
+
+.fieldInput {
+  border: 0.5px solid lightgray;
+  font-size: 11px;
+  color: black;
+  width: 250px;
+}
+
+#supportFields {
+  margin-left: 30px;
+}
+
+.localButton {
+  height: 25px !important;
+  margin-top:2px !important;
+  padding-top: 2px !important;
+  line-height: 0 !important;
+}
+
+
+#divOps {
+  margin-top: 10px;
+}
+
+.standby {
+  font-size:16px;
+  color: black;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}

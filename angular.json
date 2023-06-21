@@ -27,6 +27,7 @@
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-spinner/animations/timer.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -36,13 +37,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "7kb",
+                  "maximumError": "10kb"
                 }
               ],
               "outputHashing": "all"
@@ -65,7 +66,8 @@
               "browserTarget": "opfundsync:build:production"
             },
             "development": {
-              "browserTarget": "opfundsync:build:development"
+              "browserTarget": "opfundsync:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

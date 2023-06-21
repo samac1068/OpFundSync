@@ -1,0 +1,19 @@
+.page {
+    font-size: 11px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.setleft {
+    float: left;
+    margin-left: 2px;
+}
+
+.setright {
+    float: right;
+    margin-right: 5px;
+}
+
+.idtxt {
+    color: grey;
+}

@@ -1,0 +1,15 @@
+.navclass
+{
+  background-color: #F7F7F7;
+  /*border: 1px solid #cccccc;*/
+  height: 40px;
+  width: 100%;
+  /*box-shadow: 2px 2px 2px #cccccc;*/
+  margin-left: 0;
+  overflow: hidden;
+}
+
+.innerbox
+{
+  margin-left: 10px;
+}

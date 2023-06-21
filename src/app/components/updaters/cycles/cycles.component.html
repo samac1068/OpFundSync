@@ -1,0 +1,56 @@
+<div class="container page">
+  <div class="row">
+        <div class="col-lg"><span class="setleft" style="font-weight: bold">PID: <span class="idtxt">{{ selRec.cyc_id }}</span></span></div>
+        <div class="col-lg"><mat-checkbox id="opHidden" class="setright" style="font-weight: bold" [(ngModel)]="selRec.opHidden"
+          (change)="storeAllChanges($event)">Hidden</mat-checkbox></div>
+  </div>
+
+  <!-- Cycle -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Cycle:</mat-label>
+        <input matInput id="cycle" [formControl]="cycleControl" [(ngModel)]="selRec.cycle" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- FY -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>FY:</mat-label>
+        <input matInput id="fy" [formControl]="fyControl" [(ngModel)]="selRec.FY" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg">
+    <table style="width: 100%; height: 100%">
+      <tr>
+        <td style="width:45%">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Fiscal Start</mat-label>
+            <input matInput [matDatepicker]="fystart" [(ngModel)]="fyStart" (dateChange)="dateChanges('fystart')">
+            <mat-datepicker-toggle matSuffix [for]="fystart"></mat-datepicker-toggle>
+            <mat-datepicker #fystart></mat-datepicker>
+          </mat-form-field>
+        </td>
+        <td>&nbsp;</td>
+        <td style="width:45%">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Fiscal End</mat-label>
+            <input matInput [matDatepicker]="fyend" [(ngModel)]="fyEnd" (dateChange)="dateChanges('fyend')">
+            <mat-datepicker-toggle matSuffix [for]="fyend"></mat-datepicker-toggle>
+            <mat-datepicker #fyend></mat-datepicker>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+  <!-- Button Group -->
+  <app-btn-group [isNewRecord]="isNewRecord"></app-btn-group>
+</div>

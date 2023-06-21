@@ -1,0 +1,121 @@
+<div class="container page">
+  <div class="row">
+    <div class="col-lg"><span class="setleft" style="font-weight: bold">ID: <span class="idtxt">{{ selRec.lngMissionLocationID }}</span></span></div>
+    <div class="col-lg"><mat-checkbox id="opHidden" class="setright" style="font-weight: bold" [(ngModel)]="selRec.opHidden" (change)="storeAllChanges($event)">Hidden</mat-checkbox></div>
+    <div class="col-lg"><mat-checkbox id="combatzone" class="setright" style="font-weight: bold" [(ngModel)]="selRec.CZ" (change)="storeAllChanges($event)">Combat Zone</mat-checkbox></div>
+  </div>
+
+  <!-- Location -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Location:</mat-label>
+        <input matInput id="location" [formControl]="locationControl" [(ngModel)]="selRec.strMissionLocation" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Display -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Display:</mat-label>
+        <input matInput id="display" [formControl]="displayControl" [(ngModel)]="selRec.DISPLAY" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Country -->
+  <div class="row">
+    <div class="col-lg">
+        <mat-form-field style="width:100%">
+            <mat-label>Country</mat-label>
+            <mat-select id="country" [formControl]="countryControl" [(ngModel)]="selRec.CountryCode" (selectionChange)="storeAllChanges($event)">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let c of country" [value]="c.CountryCode">
+                {{ c.CountryName }} ({{ c.CountryCode }})
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="countryControl.hasError('required')">Choose a Country</mat-error>
+          </mat-form-field>
+    </div>
+  </div>
+
+  <!-- State -->
+  <div class="row" *ngIf="selRec.CountryCode == 'US'">
+    <div class="col-lg">
+        <mat-form-field style="width:100%">
+            <mat-label>State</mat-label>
+            <mat-select id="state" [formControl]="stateControl" [(ngModel)]="selRec.STATEAB" (selectionChange)="storeAllChanges($event)" [disabled]="selRec.CountryCode != 'US'">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let s of states" [value]="s.state_cd">
+                {{ s.state_name }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Zip Code -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Zip Code:</mat-label>
+        <input matInput id="zipcode" [(ngModel)]="selRec.ZipCode" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Installation -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Installation:</mat-label>
+        <input matInput id="installation" [formControl]="installationControl" [(ngModel)]="selRec.Installation" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Geo Location -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Geo Location:</mat-label>
+        <input matInput id="geolocation" [formControl]="geolocControl" [(ngModel)]="selRec.GeoLocation" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Coordinates -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Coordinates:</mat-label>
+        <input matInput id="geocoord" [formControl]="geocoordControl" [(ngModel)]="selRec.Geographic_Coord" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Latitude -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Latitude:</mat-label>
+        <input matInput id="latitude" [formControl]="latitudeControl" [(ngModel)]="selRec.Latitude" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Longitude -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Longitude:</mat-label>
+        <input matInput id="longitude" [formControl]="longitudeControl" [(ngModel)]="selRec.Longitude" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Button Group -->
+  <app-btn-group [isNewRecord]="isNewRecord"></app-btn-group>
+</div>

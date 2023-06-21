@@ -1,0 +1,40 @@
+<div class="container page">
+  <div class="row">
+        <div class="col-lg"><span class="setleft" style="font-weight: bold">ID: <span class="idtxt">{{ selRec.opId }}</span></span></div>
+        <div class="col-lg"><mat-checkbox id="opHidden" class="setright" style="font-weight: bold" [(ngModel)]="selRec.opHidden"
+          (change)="storeAllChanges($event)">Hidden</mat-checkbox></div>
+  </div>
+
+  <!-- ShortName -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Short Name:</mat-label>
+        <input matInput id="shortname" [formControl]="shNameControl" [(ngModel)]="selRec.opShortName" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- LongName -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Long Name:</mat-label>
+        <input matInput id="longname" [formControl]="lgNameControl" [(ngModel)]="selRec.opLongName" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- AuthID -->
+  <div class="row">
+    <div class="col-lg">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Authority ID:</mat-label>
+        <input matInput id="authorityid" [formControl]="authidControl" [(ngModel)]="selRec.opAuthId" (focusout)="textChanges($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Button Group -->
+  <app-btn-group [isNewRecord]="isNewRecord"></app-btn-group>
+</div>

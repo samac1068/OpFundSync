@@ -1,0 +1,45 @@
+<div class="box">
+    <!-- Left Side Update Section -->
+    <div class="leftcol" [ngClass]="showEditor?'leftcol':'leftcol_hide'">
+        <app-update-panel [isNewRecord]="isNewRecord" [curSelectedButton]="curOperation"></app-update-panel>
+    </div>
+
+    <!-- Section Separator -->
+    <div class="sep" [ngClass]="showEditor?'leftcol':'leftcol_hide'"></div>
+
+    <!-- Ride Side High -->
+    <div id="floatBtn">
+      <button class="btn btnCustom"
+              style="margin-top:20px;right:30px;color:white;font-size:12px; border: 1px solid darkslategray;float:right; position:absolute;"
+              *ngIf="!showEditor" (click)="clickedAutoAttach()">Auto Attach</button>
+    </div>
+
+    <!-- Right Side Data Grid -->
+    <div #rightcol class="rightcol" [ngClass]="showEditor?'rightcol':'rightcol_wide'">
+        <div style="margin-bottom: 10px">
+            <button class="btn btnCustom"
+                    style="margin-top:10px;margin-right:30px;color:white;font-size:12px; border: 1px solid darkslategray;"
+                    *ngIf="!showEditor" (click)="createNewRecordHandler()">Create New Record
+            </button>
+
+            <label id="lblInstruct">Individual Column Filters are available below column headers and will only filter for the specific column.</label>
+        </div>
+
+        <!-- Generate the dynamic table using Ag Grid plugin  -->
+        <ag-grid-angular id="opDataTbl"
+                           style="width: 100%; height: 92%;"
+                           class="ag-theme-balham"
+                           [rowData]="dgData"
+                           [columnDefs]="colHeadData"
+                           [defaultColDef]="colDefaults"
+                           [animateRows]="true"
+                           (gridReady)="onGridReady($event)"
+        ></ag-grid-angular>
+
+        <div id="divSpinner" [hidden]="allDataLoaded" class="dgloader rightcol" [ngClass]="showEditor ? 'rightcol' : 'rightcol_wide'">
+            <ngx-spinner bdColor="rgba(51,51,51,.9)" size="medium" color="#fff" type="timer" [fullScreen]="false">
+                <p style="color: white">Stand By Loading Tab Data...{{ ds.curSelectedButton | uppercase}}</p>
+            </ngx-spinner>
+        </div>
+    </div>
+</div>

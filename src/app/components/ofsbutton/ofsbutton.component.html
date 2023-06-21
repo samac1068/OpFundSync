@@ -1,0 +1,7 @@
+<div class="col-sm" (mousedown)="handleMouseDown()" (mouseup)="handleMouseUp()" (mouseover)="handleMouseOver()" (mouseout)="handleMouseOut()"
+  [title]="tooltip">
+  <div class="btnbox" [style.width.px]="width" [ngStyle]="buttonShift()" >
+      <img [src]="imgPath" alt="OFS Button" />
+      <span class="btnlabel" [ngStyle]="{'color': txtColorArr[txtIndex]}">{{ label }}</span>
+  </div>
+</div>

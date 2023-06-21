@@ -1,0 +1,12 @@
+<div [ngSwitch]="curSelectedButton">
+    <app-damps *ngSwitchCase="'damps'" [isNewRecord]="isNewRecord"></app-damps>
+    <app-orders *ngSwitchCase="'orders'" [isNewRecord]="isNewRecord"></app-orders>
+    <app-pay *ngSwitchCase="'pay'" [isNewRecord]="isNewRecord"></app-pay>
+    <app-tcs *ngSwitchCase="'tcs'" [isNewRecord]="isNewRecord"></app-tcs>
+    <app-conusa *ngSwitchCase="'conusa'" [isNewRecord]="isNewRecord"></app-conusa>
+    <app-missionlocation *ngSwitchCase="'missionlocations'" [isNewRecord]="isNewRecord"></app-missionlocation>
+    <app-fundcites *ngSwitchCase="'fundcites'" [isNewRecord]="isNewRecord"></app-fundcites>
+    <app-operations *ngSwitchCase="'operations'" [isNewRecord]="isNewRecord"></app-operations>
+    <app-tpfdd *ngSwitchCase="'tpfdd'" [isNewRecord]="isNewRecord"></app-tpfdd>
+    <app-cycles *ngSwitchCase="'cycles'" [isNewRecord]="isNewRecord"></app-cycles>
+</div>

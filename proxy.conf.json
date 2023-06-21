@@ -1,0 +1,7 @@
+{
+  "/OFS": {
+    "target": "http://localhost:61502",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

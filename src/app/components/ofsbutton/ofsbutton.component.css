@@ -1,0 +1,22 @@
+.btnbox {
+    height: 30px;
+    border: 1px solid lightgray;
+    box-shadow: 1px 1px #cccccc;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btnlabel {
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.btnimg {
+    height: 30px;
+    border: none;
+    margin-left: 10px;
+}
