@@ -18,6 +18,7 @@ export class Damps {
     ma12302_Corona: boolean;
     ma12302_Border: boolean;
     ma12302_Counterdrug: boolean;
+    ma12304_oas: boolean;
     Op_ID: number;
     opShortName: string;
     opLongName: string;

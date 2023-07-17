@@ -5,6 +5,7 @@ import { LogConsoleDialogComponent } from './modules/conlog/log-console-dialog/l
 import { ConlogService } from './modules/conlog/conlog.service';
 import { MatDialog } from '@angular/material/dialog';
 import {CommService} from "./services/comm.service";
+import {User} from "./models/User";
 
 @Component({
   selector: 'app-root',
@@ -45,13 +46,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getSystemConfig();
+    this.getUserInfo();
 
     //Make sure the API is available before we start attempting to load anything
     this.conlog.log("validateAPI");
     this.loading = true;
     this.data.apiGetCommsCheck()
       .subscribe((results) => {
-          if(results['message'] == "Comms Successful - OFS") {
+          if(results['message'] == "You have successfully accessed the API using GET with parameter [TEST]") {
             this.ds.system.apiCommCheckPassed = true;
             this.conlog.log("Comms Connection Successful - OFS");
             this.conlog.log("API Path is : " + this.data.getWSPath());
@@ -71,8 +73,8 @@ export class AppComponent implements OnInit {
     if(this.ds.system.apiCommCheckPassed) {
       //Execute a session token before we continue.
       /* TODO: Need to pull in either the username or the userid for this user ( probably in bridge ID - then we can update versus create a token) */
-      this.conlog.log("Forced a specific user at this moment: 7176. getSessionToken");
-      this.data.getSessionToken(7176, "NULL")
+      this.conlog.log("getSessionToken for userId: " + this.ds.getUserId());
+      this.data.getSessionToken(this.ds.getUserId(), "NULL")
         .subscribe((results: any) => {
           if (results['token'] != "") {
             if (results['token'].substring(0, 2) == "ERR") {
@@ -108,6 +110,13 @@ export class AppComponent implements OnInit {
     this.ds.system.type = results.type;
     this.ds.system.devMode = (results.type === "development");
     this.ds.system.path = results.path;
+  }
+
+  getUserInfo(){
+    // Pull the user's information from the requeststring and parse out the user id for use.
+    this.ds.user = new User();
+    let user = this.ds.getParamValueQueryString('cid');
+    this.ds.user.userid = (user != null && user != undefined) ? parseInt(user) : 7176;
   }
 }
 

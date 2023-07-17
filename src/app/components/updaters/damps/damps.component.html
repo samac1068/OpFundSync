@@ -114,7 +114,8 @@
       </div>
 
     <span style="font-weight: bold">Mob Authorities</span>
-    <mat-card>
+    <!--<mat-card>-->
+    <div class="orderBtns">
       <div class="row g-0">
         <div class="col-sm">
           <mat-checkbox id="ma12301_d" formControlName="ma12301_d" required (change)="storeAllChanges($event)">12301(D)</mat-checkbox>
@@ -132,6 +133,9 @@
           <mat-checkbox id="ma12304_b" formControlName="ma12304_b" (change)="storeAllChanges($event)">12304(B)</mat-checkbox>
         </div>
         <div class="col-sm">
+          <mat-checkbox id="ma12304_oas" formControlName="ma12304_oas" (change)="storeAllChanges($event)">12304 OAS</mat-checkbox>
+        </div>
+        <div class="col-sm">
           <mat-checkbox id="ma12302_Border" formControlName="ma12302_Border" (change)="storeAllChanges($event)">12302 Border</mat-checkbox>
         </div>
         <div class="col-sm">
@@ -141,7 +145,8 @@
           <mat-checkbox id="ma12302_Counterdrug" formControlName="ma12302_Counterdrug" (change)="storeAllChanges($event)">12302 Counterdrug</mat-checkbox>
         </div>
       </div>
-    </mat-card>
+    </div>
+    <!--</mat-card>-->
   </form>
 
   <!-- Button Group -->

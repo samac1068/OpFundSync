@@ -58,3 +58,11 @@ mat-checkbox, mat-checkbox-frame, mat-checkbox-checked, mat-checkbox-background 
   margin-bottom: 2px;
   padding: 0;
 }
+
+.orderBtns {
+  box-shadow: 1px 1px 5px gray;
+  background-color: #CADEB5;
+  padding: 10px;
+  width: 98%;
+  height: 110px;
+}

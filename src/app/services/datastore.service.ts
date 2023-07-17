@@ -5,6 +5,7 @@ import {System} from "../models/System";
 import {User} from "../models/User";
 import {Toaster} from 'ngx-toast-notifications';
 import {ConlogService} from '../modules/conlog/conlog.service';
+import {HttpParams} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,7 @@ export class DatastoreService {
               {"headerName": "12304", "field": "ma12304", "cellRenderer": AGCheckBoxRendererComponent},
               {"headerName": "12304A", "field": "ma12304_a", "cellRenderer": AGCheckBoxRendererComponent},
               {"headerName": "12304B", "field": "ma12304_b", "cellRenderer": AGCheckBoxRendererComponent},
+              {"headerName": "12304 OAS", "field": "ma12304_oas", "cellRenderer": AGCheckBoxRendererComponent},
               {"headerName": "12302 BORDER", "field": "ma12302_Border", "cellRenderer": AGCheckBoxRendererComponent},
               {"headerName": "12302 CORONA", "field": "ma12302_Corona", "cellRenderer": AGCheckBoxRendererComponent},
               {"headerName": "12302 COUNTERDRUG", "field": "ma12302_Counterdrug", "cellRenderer": AGCheckBoxRendererComponent},
@@ -203,6 +205,9 @@ export class DatastoreService {
     return this.user["sKey"];
   }
 
+  getUserId(): number {
+    return this.user.userid;
+  }
   ///////////////////////////////////////// Global Services and functions
   public getSelectedRow(arr: any, id: number) {
     return arr.find((x: any) => x.ID == id);
@@ -256,5 +261,15 @@ export class DatastoreService {
     });
   }
 
+  getParamValueQueryString( paramName: string ): string | null {
+    const url: string = window.location.href;
+    let paramValue;
+    if (url.includes('?')) {
+      const httpParams: HttpParams | null = new HttpParams({ fromString: url.split('?')[1] });
+      paramValue = httpParams.get(paramName);
+      return paramValue;
+    }
+    return null;
+  }
 
 }

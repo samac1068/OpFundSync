@@ -78,10 +78,12 @@ export class DataService {
   }
 
   // This will identify which server is being targeted.
-  getWSPath(): string { // This updates the relative path depending on running locally or on a server.
-    let wspath: string = (this.ds.system.path != undefined) ? this.ds.system.path : "";   // Prefix the provided path to the string
-    wspath += (this.ds.system.type == 'production') ? "/MOBAPI/OFS" : "/OFS";             // Are we on production or development
-    //this.conlog.log("This api URL is: " + wspath);
+  getWSPath(showPath: boolean = false): string { // This updates the relative path depending on running locally or on a server.
+    let wspath: string = (this.ds.system.path != undefined) ? this.ds.system.path : ".";      // Prefix the provided path to the string
+    if(this.ds.system.type == 'production') wspath += "/MOBAPI"; // Are we on production or development
+    wspath += "/API/OFS";
+
+    if(showPath) this.conlog.log("path is: " + wspath);
     return wspath;
   }
 
@@ -110,7 +112,8 @@ export class DataService {
 
   apiGetCommsCheck() {  // This is used to confirm that the API is accessible
     this.conlog.log("Performing Get Comms Check");
-    return this.http.get(`${this.getWSPath()}/CheckAPIComms`);
+    const params: any = new HttpParams().set('id', 'TEST');
+    return this.http.get(`${this.getWSPath(true)}/CheckAPICheckWithParam`, {params});
   }
 
   // Retrieve Data from local file
@@ -163,6 +166,7 @@ export class DataService {
       .pipe(catchError(this.errorHandler));*/
 
     const params: any = new HttpParams().set('sKey', this.ds.getSKey()).set('apiKey', this.ds.getPassKey()).set('op', subop);
+    this.conlog.log("getSubOperationData: " + subop + " with PARAMS: " + this.ds.getSKey() + " " +  this.ds.getPassKey());
     return (this.http.get<any>(`${this.getWSPath()}/GetOperationData`, {params})
       .pipe(catchError(this.errorHandler)));
   }
