@@ -1,4 +1,5 @@
 export class Pay {
+    kid: string;
     PAY_Operation_ID: number;
     PAY_Operation: string;
     PAY_Operation_Description: string;

@@ -66,6 +66,7 @@ export class DatawindowComponent implements OnInit {
     // Reload of Datagrid signaled
     this.comm.signalReload.subscribe(() => {
       this.showEditor = false;
+      this.showLoaderAni();
       this.getSelectedOperationData();
     });
 
@@ -172,7 +173,7 @@ export class DatawindowComponent implements OnInit {
     this.data.getOperationData()
       .subscribe((results) => {
         this.conlog.log("storing data for " + this.ds.curSelectedButton);
-        this.dgData = results; // Load the returning data to be displayed
+        this.dgData = this.ds.checkForCustomError(results); // Load the returning data to be displayed
         this.dgDataRaw = results;
         this.ds.opsData[this.ds.curSelectedButton] = this.dgData;
         this.colHeadData = this.ds.columnHeaders[this.ds.curSelectedButton]; // Load the list of column headers for the selected operation

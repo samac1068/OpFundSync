@@ -1,4 +1,5 @@
 export class Fundcites {
+    kid: string;
     FundId: number;
     FundCode: string;
     FundEffDate: string;

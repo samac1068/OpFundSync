@@ -1,37 +1,20 @@
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEventType } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import {DatastoreService} from "./datastore.service";
+import {ConlogService} from "../modules/conlog/conlog.service";
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
-
-    // @ts-ignore
+  constructor(private ds: DatastoreService, private conlog: ConlogService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-        // Enter if outgoing response for all data - add the bearer token to all requests
-        if(req.url.indexOf('token') == -1) {
-            //const curToken = localStorage.getItem("key");
-            const curToken = localStorage.getItem("token");
-            //console.log("token is " + curToken);
-            const modBasicReq = req.clone({
-                headers: req.headers.append('Authorization', `Bearer ${curToken}`)
-            });
-
-            return next.handle(modBasicReq);
-        }
-
-        // Enter if outgoing response for token data only
-        else if(req.url.indexOf('token') != -1) {
-            const modInitReq = req.clone({
-                headers: req.headers.append('Content-Type', 'application/x-www-form-urlencoded')
-            });
-
-            console.log("Initial Request", modInitReq);
-
-            return next.handle(modInitReq)
-            .pipe(tap(event => {
-                if(event.type === HttpEventType.Response) {
-                    console.log("RESPONSE", event.body);
-                    localStorage.setItem("token", event.body);
-                }
-            }));
-        }
+    // Need to only attached for POST requests
+    if(req.method == 'POST') {
+      this.conlog.log("Adding Bearer Token");
+      const updatedReq: HttpRequest<any> = req.clone({
+        params: req.params.append('Authorization', this.ds.getBearerToken())
+      });
+      return next.handle(updatedReq);
+    } else
+      return next.handle(req);
     }
 }

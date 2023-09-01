@@ -1,4 +1,5 @@
 export class OpSptCmd {
+  kid: string;
   op_id: number;
   sptcmd: number;
   funding: string;

@@ -1,5 +1,6 @@
 export class Conusa {
-    opId: number; 
+    kid: string;
+    opId: number;
     opShortName: string;
     opLongName: string;
     opAuthId: number;

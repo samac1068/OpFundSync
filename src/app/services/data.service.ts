@@ -18,6 +18,7 @@ import {MissionAssign} from '../models/missionassign';
 import {Fundcites} from '../models/fundcites';
 
 import {ConlogService} from '../modules/conlog/conlog.service';
+import {CommCheck} from "../models/CommCheck";
 
 const httpHeaders = {
   headers: new HttpHeaders({
@@ -112,8 +113,16 @@ export class DataService {
 
   apiGetCommsCheck() {  // This is used to confirm that the API is accessible
     this.conlog.log("Performing Get Comms Check");
-    const params: any = new HttpParams().set('id', 'TEST');
-    return this.http.get(`${this.getWSPath(true)}/CheckAPICheckWithParam`, {params});
+    const params: any = new HttpParams().set('id', 'GET-TEST');
+    return this.http.get(`${this.getWSPath(true)}/CheckGetAPICheckWithParam`, {params});
+  }
+
+  apiPostCommsCheck() {
+    this.conlog.log("Performing Post Comms Check");
+    let fullDomain: string = this.getWSPath() + `/CheckPostAPICheckWithParam`;
+    const params: CommCheck = {id: 'POST-TEST'};
+    return (this.http.post<CommCheck>(fullDomain, params, httpHeaders)
+      .pipe(catchError(this.errorHandler)));
   }
 
   // Retrieve Data from local file
@@ -123,32 +132,20 @@ export class DataService {
 
   // Establish Secure Connection and Store Retrieved Token
   getSessionToken(userid: number, username: string): Observable<any> {
-    /*this.conlog.log('getSessionToken');
-    const reqbody: any = {
-      devkey: this.ds.getDevKey(),
-      userid: userid,
-      username: username
-    };
-    return this.http.post<string>(`${this.getWSPath()}/RequestSessionToken`, reqbody)
-      .pipe(catchError(this.errorHandler));*/
-
     // Access via HttpGet
     const params: any = new HttpParams().set('devKey', this.ds.getDevKey()).set('userid', userid).set('username', username);
     return (this.http.get<any>(`${this.getWSPath()}/RequestSessionToken`, {params})
       .pipe(catchError(this.errorHandler)));
   }
 
+  getBearerToken(userid: number) :Observable<any> {
+    const params: any = new HttpParams().set('devKey', this.ds.getDevKey()).set('userid', userid);
+    return (this.http.get<any>(`${this.getWSPath()}/GetToken`, {params})
+      .pipe(catchError(this.errorHandler)));
+  }
+
   // Retrieve Data from Server
   getOperationData(): Observable<any> {
-    /*this.conlog.log('getOperationData -' + this.ds.curSelectedButton);
-    const reqbody: any = {
-      sKey: this.ds.getSKey(),
-      apiKey: this.ds.getPassKey(),
-      op: this.ds.curSelectedButton
-    };
-    return this.http.post<any>(`${this.getWSPath()}/GetOperationData`, reqbody)
-      .pipe(catchError(this.errorHandler));*/
-
     // Access via HttpGet
     const params: any = new HttpParams().set('sKey', this.ds.getSKey()).set('apiKey', this.ds.getPassKey()).set('op', this.ds.curSelectedButton);
     return (this.http.get<any>(`${this.getWSPath()}/GetOperationData`, {params})
@@ -156,15 +153,6 @@ export class DataService {
   }
 
   getSubOperationData(subop: string): Observable<any> {
-    /*this.conlog.log('getSubOperationData - ' + subop);
-    const reqbody: any = {
-      sKey: this.ds.getSKey(),
-      apiKey: this.ds.getPassKey(),
-      op: subop
-    };
-    return this.http.post<any>(`${this.getWSPath()}/GetOperationData`, reqbody)
-      .pipe(catchError(this.errorHandler));*/
-
     const params: any = new HttpParams().set('sKey', this.ds.getSKey()).set('apiKey', this.ds.getPassKey()).set('op', subop);
     this.conlog.log("getSubOperationData: " + subop + " with PARAMS: " + this.ds.getSKey() + " " +  this.ds.getPassKey());
     return (this.http.get<any>(`${this.getWSPath()}/GetOperationData`, {params})
@@ -172,88 +160,36 @@ export class DataService {
   }
 
   searchMissionLocation(locName: string): Observable<any> {
-    /*this.conlog.log('searchMissionLocation - ' + locName);
-    const reqbody: any = {
-      sKey: this.ds.getSKey(),
-      apiKey: this.ds.getPassKey(),
-      locName: locName
-    };
-    return this.http.post<any>(`${this.getWSPath()}/SearchMissionLocation`, reqbody)
-      .pipe(catchError(this.errorHandler));*/
-
     const params: any = new HttpParams().set('sKey', this.ds.getSKey()).set('apiKey', this.ds.getPassKey()).set('locName', locName);
     return (this.http.get<any>(`${this.getWSPath()}/SearchMissionLocation`, {params})
       .pipe(catchError(this.errorHandler)));
   }
 
   searchGeoLocation(locName: string): Observable<any> {
-    /*this.conlog.log('searchMissionLocation - ' + locName);
-    const reqbody: any = {
-      sKey: this.ds.getSKey(),
-      apiKey: this.ds.getPassKey(),
-      locName: locName
-    };
-    return this.http.post<any>(`${this.getWSPath()}/SearchGeoLocation`, reqbody)
-      .pipe(catchError(this.errorHandler));*/
-
     const params: any = new HttpParams().set('sKey', this.ds.getSKey()).set('apiKey', this.ds.getPassKey()).set('locName', locName);
     return (this.http.get<any>(`${this.getWSPath()}/SearchGeoLocation`, {params})
       .pipe(catchError(this.errorHandler)));
   }
 
   getPayLOA(opID: string): Observable<any> {
-    /*this.conlog.log('getPayLOA - ' + opID);
-    const reqbody: any = {
-      sKey: this.ds.getSKey(),
-      apiKey: this.ds.getPassKey(),
-      opID: opID
-    };
-    return this.http.post<any>(`${this.getWSPath()}/GetPayLinesOfAccounting`, reqbody)
-      .pipe(catchError(this.errorHandler));*/
-
     const params: any = new HttpParams().set('sKey', this.ds.getSKey()).set('apiKey', this.ds.getPassKey()).set('opID', opID);
     return (this.http.get<any>(`${this.getWSPath()}/GetPayLinesOfAccounting`, {params})
       .pipe(catchError(this.errorHandler)));
   }
 
   getTCSLOA(opID: string): Observable<any> {
-    /*this.conlog.log('getTCSLOA - ' + opID);
-    const reqbody: any = {
-      sKey: this.ds.getSKey(),
-      apiKey: this.ds.getPassKey(),
-      opID: opID
-    };
-    return this.http.post<any>(`${this.getWSPath()}/GetTCSLinesOfAccounting`, reqbody)
-      .pipe(catchError(this.errorHandler));*/
-
     const params: any = new HttpParams().set('sKey', this.ds.getSKey()).set('apiKey', this.ds.getPassKey()).set('opID', opID);
     return (this.http.get<any>(`${this.getWSPath()}/GetTCSLinesOfAccounting`, {params})
       .pipe(catchError(this.errorHandler)));
   }
 
   getAllLOA(ftype: number): Observable<any> {
-    /*this.conlog.log('getAllLOA - ' + ftype);
-    const reqbody: any = {
-      sKey: this.ds.getSKey(),
-      apiKey: this.ds.getPassKey(),
-      ftype: ftype
-    };
-    return this.http.post<any>(`${this.getWSPath()}/GetAllLinesOfAccounting`, reqbody)
-      .pipe(catchError(this.errorHandler));*/
-
     const params: any = new HttpParams().set('sKey', this.ds.getSKey()).set('apiKey', this.ds.getPassKey()).set('type', ftype);
     return (this.http.get<any>(`${this.getWSPath()}/GetAllLinesOfAccounting`, {params})
       .pipe(catchError(this.errorHandler)));
   }
 
   getAutoAttach(): Observable<any> {
-    /*this.conlog.log('getAutoAttach');
-    const reqbody: any = {
-      devKey: this.ds.getDevKey()
-    };
-    return this.http.get<any>(`${this.getWSPath()}/ExecAutoAttach`, reqbody)
-      .pipe(catchError(this.errorHandler));*/
-
     const params: any = new HttpParams().set('devKey', this.ds.getDevKey());
     return (this.http.get<any>(`${this.getWSPath()}/ExecAutoAttach`, {params})
       .pipe(catchError(this.errorHandler)));
@@ -262,80 +198,93 @@ export class DataService {
   /////////////////////// POSTS
   modifyFPOperationRecord(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateFPOperationData`;
-    return (this.http.post<Damps>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Damps>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   modifyOrdersRecord(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateOrdersData`;
-    return (this.http.post<Orders>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Orders>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   modifyOpsLocationData(locationData: MissionAssign): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateOpsLocationData`;
-    return (this.http.post<MissionAssign>(fullDomain + '?kid=' + this.createKeyObject(), locationData, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<MissionAssign>(fullDomain, locationData, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   updatePayRecord(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdatePayData`;
-    return (this.http.post<Pay>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Pay>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   updateTCSRecord(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateTCSData`;
-    return (this.http.post<TCS>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<TCS>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   updateCONUSARecord(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateCONUSAData`;
-    return (this.http.post<Conusa>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Conusa>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   updateLocationData(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateLocationData`;
-    return (this.http.post<Location>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Location>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   saveMissionLocation(LocationInfo: LocationSearch): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/SaveMissionLocation`;
-    return (this.http.post<Location>(fullDomain + '?kid=' + this.createKeyObject(), LocationInfo, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Location>(fullDomain, LocationInfo, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   updateFundCiteData(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateFundCiteData`;
-    return (this.http.post<Fundcites>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Fundcites>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   updateOperationData(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateOpsLookupData`;
     console.log(this.ds.curSelectedRecord);
-    return (this.http.post<Operation>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord as Operation, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Operation>(fullDomain, this.ds.curSelectedRecord as Operation, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   updateOperationSptData(OpSptCmdInfo: OpSptCmd): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateOpsLookupSptData`;
-    return (this.http.post<Operation>(fullDomain + '?kid=' + this.createKeyObject(), OpSptCmdInfo, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Operation>(fullDomain, OpSptCmdInfo, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   updateTPFDDRecord(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateTPFDDData`;
-    return (this.http.post<Tpfdd>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Tpfdd>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 
   updateCycleRecord(): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateCycleData`;
-    return (this.http.post<Cycle>(fullDomain + '?kid=' + this.createKeyObject(), this.ds.curSelectedRecord, httpHeaders)
+    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    return (this.http.post<Cycle>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
 

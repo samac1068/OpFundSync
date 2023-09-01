@@ -6,18 +6,20 @@ import {User} from "../models/User";
 import {Toaster} from 'ngx-toast-notifications';
 import {ConlogService} from '../modules/conlog/conlog.service';
 import {HttpParams} from "@angular/common/http";
+import {ConfirmDialogService} from "../dialog/confirm-dialog/confirm-dialog.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatastoreService {
 
-  constructor(private toaster: Toaster, private conlog: ConlogService) { }
+  constructor(private toaster: Toaster, private conlog: ConlogService, private cds: ConfirmDialogService) { }
 
   //Variables
   private _passKey: string = "4A3F6BD3-61FB-467B-83D0-0EFBAF72AFC4";
   private _devKey = "6A586E327235753778214125442A472D";
-  private _appVersion: string = '2.1.23.0621';
+  private _appVersion: string = '2.1.23.0901';
+  private _bearerToken: string = "";
 
   system: System = new System();
   user: User = new User();
@@ -208,6 +210,15 @@ export class DatastoreService {
   getUserId(): number {
     return this.user.userid;
   }
+
+  getBearerToken(): string {
+    return this._bearerToken;
+  }
+
+  setBearerToken(token: string): void {
+    this._bearerToken = token;
+  }
+
   ///////////////////////////////////////// Global Services and functions
   public getSelectedRow(arr: any, id: number) {
     return arr.find((x: any) => x.ID == id);
@@ -272,4 +283,11 @@ export class DatastoreService {
     return null;
   }
 
+  checkForCustomError(obj: any): any {
+    // Check for the errmess variable, if true, then popup a alert message, but allow the application to continue.
+    if(obj.errmess != undefined && obj.message == null){
+      this.cds.acknowledge("Fatal Error", "Error: " + obj.errmess, 'Ok').then(() => { return null;});
+    }
+    return (obj.errmess != undefined) ? null : obj;
+  }
 }

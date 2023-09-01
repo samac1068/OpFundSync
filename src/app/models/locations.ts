@@ -1,4 +1,5 @@
 export class Locations {
+    kid: string;
     lngMissionLocationID: number;
     strMissionLocation: string;
     MissionConus: boolean;

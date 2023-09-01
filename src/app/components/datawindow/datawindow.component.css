@@ -79,8 +79,8 @@
 .ag-theme-balham
 {
   --ag-header-height: 30px;
-  --ag-header-foreground-color: white;
-  --ag-header-background-color: #66903B;
+  --ag-header-foreground-color: rgba(18, 35, 18, 0.99);
+  --ag-header-background-color: #93bd60;
   --ag-header-cell-hover-background-color: #77b55a;
   --ag-header-cell-moving-background-color: rgb(80, 40, 140);
 }

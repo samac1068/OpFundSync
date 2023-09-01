@@ -1,4 +1,5 @@
 export class Tpfdd {
+    kid: string;
     PID: string;
     DESCRIPTION_LONG: string;
     DESCRIPTION_SHORT: string;

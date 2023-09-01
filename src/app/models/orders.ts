@@ -1,4 +1,5 @@
 export class Orders {
+    kid: string;
     ID: number;
     operation: string;
     op_id: number;

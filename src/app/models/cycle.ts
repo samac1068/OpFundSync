@@ -1,4 +1,5 @@
 export class Cycle {
+    kid: string;
     cyc_id: number;
     cycle: string;
     FY: number;

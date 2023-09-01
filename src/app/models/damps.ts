@@ -1,4 +1,5 @@
 export class Damps {
+    kid: string;
     action: string;
     ID: number;
     Description: string;

@@ -48,7 +48,8 @@ export class DampsComponent implements OnInit {
     ma12304_b: new FormControl(''),
     ma12302_Border: new FormControl(''),
     ma12302_Corona: new FormControl(''),
-    ma12302_Counterdrug: new FormControl('')
+    ma12302_Counterdrug: new FormControl(''),
+    ma12304_oas: new FormControl('')
   });
 
   /*dampsFormGrp: FormGroup = new FormGroup({
@@ -160,21 +161,32 @@ export class DampsComponent implements OnInit {
       ma12304_b: data.ma12304_b,
       ma12302_Border: data.ma12302_Border,
       ma12302_Corona: data.ma12302_Corona,
-      ma12302_Counterdrug: data.ma12302_Counterdrug
+      ma12302_Counterdrug: data.ma12302_Counterdrug,
+      ma12304_oas: data.ma12304_oas
     }
   }
 
   setDefaultItems() {
     this.selRec.ID = 0;  //Indication that this is a new record.
+    this.selRec.Description = "";
     this.selRec.opHidden = 0;
+
+    this.selRec.Op_ID = -1;
+    this.selRec.Cyc_ID = -1;
+    this.selRec.PAY_Operation_ID = -1;
+    this.selRec.TCS_Operation_ID = -1;
+    this.selRec.Conusa_OpID = -1;
+
     this.selRec.ma12301_d = 0;
     this.selRec.ma12302 = 0;
     this.selRec.ma12302_Corona = 0;
     this.selRec.ma12302_Border = 0;
     this.selRec.ma12302_Counterdrug = 0;
+    this.selRec.ma12304_oas = 0;
     this.selRec.ma12304 = 0;
     this.selRec.ma12304_a = 0;
     this.selRec.ma12304_b = 0;
+
     this.selRec.UIC_ToNipr = 0;
     this.selRec.MOBCAP = -1;
   }
@@ -238,6 +250,7 @@ export class DampsComponent implements OnInit {
     if (this.selRec.ma12302_Corona == null) this.selRec.ma12302_Corona = 0;
     if (this.selRec.ma12302_Border == null) this.selRec.ma12302_Border = 0;
     if (this.selRec.ma12302_Counterdrug == null) this.selRec.ma12302_Counterdrug = 0;
+    if (this.selRec.ma12304_oas == null) this.selRec.ma12304_oas = 0;
     if (this.selRec.UIC_ToNipr == null) this.selRec.UIC_ToNipr = 0;
   }
 }

@@ -1,4 +1,5 @@
 export class Operation {
+    kid: string;
     op_id?: number;
     operation: string;
     unitrqmt_visible?: number;

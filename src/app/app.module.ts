@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 // 3rd Party Components
 import { AngularDualListBoxModule } from "angular-dual-listbox";
@@ -22,6 +22,7 @@ import { DataService } from './services/data.service';
 import { DatastoreService } from './services/datastore.service';
 import { ConlogModule } from './modules/conlog/conlog.module';
 import {CommService} from './services/comm.service';
+import {AuthInterceptorService} from "./services/auth-interceptor.service";
 
 // Components
 import { BannerComponent } from './components/banner/banner.component';
@@ -62,6 +63,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+
 
 @NgModule({
   declarations: [
@@ -126,7 +128,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     DataService,
     DatastoreService,
     CommService,
-    Location
+    Location,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi:true}
   ],
   bootstrap: [AppComponent],
   entryComponents: [
