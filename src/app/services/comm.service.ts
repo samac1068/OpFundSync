@@ -11,6 +11,7 @@ export class CommService {
   createNewClicked = new EventEmitter();
   editRecClicked = new EventEmitter();
   cogClicked = new EventEmitter();
+  closeLocation: EventEmitter<any> = new EventEmitter();
 
   signalReload = new EventEmitter();
 }

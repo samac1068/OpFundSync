@@ -1,4 +1,5 @@
 export class LocationSearch {
+    kid: string;
     GeoLoc_Cd: string;
     GeoLocationName: string;
     GeoLocation: string;

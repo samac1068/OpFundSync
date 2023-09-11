@@ -95,6 +95,7 @@ export class LocationsDialogComponent implements OnInit {
               if (result.ID > 0) {
                 this.cds.acknowledge('Location Added', 'Successfully Added Rec ID ' + result.processMsg.split('-')[1]);
                 this.resetSearch();
+                this.comm.closeLocation.emit();
                 this.comm.signalReload.emit();
               } else {
                 // We have an error

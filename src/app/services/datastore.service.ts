@@ -18,7 +18,7 @@ export class DatastoreService {
   //Variables
   private _passKey: string = "4A3F6BD3-61FB-467B-83D0-0EFBAF72AFC4";
   private _devKey = "6A586E327235753778214125442A472D";
-  private _appVersion: string = '2.1.23.0901';
+  private _appVersion: string = '2.1.23.0911';
   private _bearerToken: string = "";
 
   system: System = new System();

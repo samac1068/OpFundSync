@@ -135,7 +135,6 @@ export class OperationDialogComponent implements OnInit {
         this.chgArr.push({id: -1, op_id: this.selOp.op_id, location_id: atob[l].lngMissionLocationID, location_name: atob[l].strMissionLocation})
       }
     }
-
     this.processLocationChanges();  // This is now recursive.
   }
 

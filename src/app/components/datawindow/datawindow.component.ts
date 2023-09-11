@@ -75,6 +75,12 @@ export class DatawindowComponent implements OnInit {
       //console.log("Passed To Edit Window", results);
       this.editRecordHandler(results);
     });
+
+    //Close Location Dialog
+    this.comm.closeLocation.subscribe(() => {
+      this.closeLocationDialog();
+    });
+
   }
 
   getSelectedOperationData(): void {
@@ -240,6 +246,9 @@ export class DatawindowComponent implements OnInit {
     }
   }
 
+  closeLocationDialog(){
+    this.locationDialogRef.close();
+  }
   editRecordHandler(selectedRow: any) {
     this.ds.curSelectedRecord = selectedRow;
     this.isNewRecord = false;

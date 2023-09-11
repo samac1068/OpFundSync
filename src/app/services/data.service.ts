@@ -212,7 +212,7 @@ export class DataService {
 
   modifyOpsLocationData(locationData: MissionAssign): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateOpsLocationData`;
-    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    locationData.kid = this.createKeyObject();
     return (this.http.post<MissionAssign>(fullDomain, locationData, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
@@ -247,9 +247,15 @@ export class DataService {
 
   saveMissionLocation(LocationInfo: LocationSearch): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/SaveMissionLocation`;
-    this.ds.curSelectedRecord.kid = this.createKeyObject();
-    return (this.http.post<Location>(fullDomain, LocationInfo, httpHeaders)
+
+    if(LocationInfo != null) {
+      LocationInfo.kid = this.createKeyObject();
+      return (this.http.post<Location>(fullDomain, LocationInfo, httpHeaders)
         .pipe(catchError(this.errorHandler)));
+    } else {
+      this.ds.generateToast("There is no record selected. Action Aborted.", false);
+      return null;
+    }
   }
 
   updateFundCiteData(): Observable<any> {
@@ -269,7 +275,7 @@ export class DataService {
 
   updateOperationSptData(OpSptCmdInfo: OpSptCmd): Observable<any> {
     let fullDomain: string = this.getWSPath() + `/UpdateOpsLookupSptData`;
-    this.ds.curSelectedRecord.kid = this.createKeyObject();
+    OpSptCmdInfo.kid = this.createKeyObject();
     return (this.http.post<Operation>(fullDomain, OpSptCmdInfo, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
@@ -287,5 +293,4 @@ export class DataService {
     return (this.http.post<Cycle>(fullDomain, this.ds.curSelectedRecord, httpHeaders)
         .pipe(catchError(this.errorHandler)));
   }
-
 }
