@@ -188,6 +188,9 @@ export class OperationDialogComponent implements OnInit {
       opsptcmd.unitrqmt_visible = this.ds.curSelectedRecord.unitrqmt_visible;
       opsptcmd.tonipr = this.ds.curSelectedRecord.toNIPR;
       opsptcmd.crc = this.ds.curSelectedRecord.CRC;
+      opsptcmd.cocom_id = this.ds.curSelectedRecord.cocom_id;
+      opsptcmd.campid = this.ds.curSelectedRecord.campid;
+      opsptcmd.projcode = this.ds.curSelectedRecord.projcode;
 
       this.data.updateOperationSptData(opsptcmd)
         .subscribe((results) => {

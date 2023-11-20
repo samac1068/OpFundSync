@@ -43,6 +43,7 @@
         </mat-select>
       </div>
     </div>
+
     <div class="row sptrow">
       <div class="col-4 fieldTitle">Funding:</div>
       <div class="col">
@@ -50,9 +51,29 @@
                (focusout)="textChanges($event)" oninput="this.value = this.value.toUpperCase()" />
       </div>
     </div>
+
     <div class="row sptrow">
       <div class="col-4 fieldTitle">MOBSlide OpName:</div>
       <div class="col"><input matInput id="mobslideopname" class="fieldInput" [(ngModel)]="selRec.mobslide_opname"
+                              (focusout)="textChanges($event)" oninput="this.value = this.value.toUpperCase()" />
+      </div>
+    </div>
+
+    <div class="row sptrow">
+      <div class="col-4 fieldTitle">COCOM ID:</div>
+      <div class="col"><input matInput id="cocom" class="fieldInput" [(ngModel)]="selRec.cocom_id"
+                              (focusout)="textChanges($event)" oninput="this.value = this.value.toUpperCase()" />
+      </div>
+    </div>
+    <div class="row sptrow">
+      <div class="col-4 fieldTitle">CAMP ID:</div>
+      <div class="col"><input matInput id="campid" class="fieldInput" [(ngModel)]="selRec.campid"
+                              (focusout)="textChanges($event)" oninput="this.value = this.value.toUpperCase()" />
+      </div>
+    </div>
+    <div class="row sptrow">
+      <div class="col-4 fieldTitle">Project Code:</div>
+      <div class="col"><input matInput id="projcode" class="fieldInput" [(ngModel)]="selRec.projcode"
                               (focusout)="textChanges($event)" oninput="this.value = this.value.toUpperCase()" />
       </div>
     </div>

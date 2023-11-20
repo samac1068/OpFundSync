@@ -44,6 +44,8 @@ export class OperationsComponent implements OnInit {
                 this.selRec.funding = this.ds.isNullOrEmpty(this.selRec.funding);
                 this.selRec.mobslide_opname = this.ds.isNullOrEmpty(this.selRec.mobslide_opname);
                 this.ds.curSelectedRecord = this.selRec;
+                this.selRec.campid = this.ds.isNullOrEmpty(this.selRec.campid);
+                this.selRec.projcode = this.ds.isNullOrEmpty(this.selRec.projcode);
 
                 this.data.updateOperationData()
                 .subscribe((results) => {

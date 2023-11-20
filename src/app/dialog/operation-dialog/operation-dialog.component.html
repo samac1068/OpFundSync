@@ -29,12 +29,33 @@
             <input matInput id="funding" class="fieldInput" [(ngModel)]="selOp.funding" maxlength="10" oninput="this.value = this.value.toUpperCase()"/>
           </div>
         </div>
-        <div class="row" style="margin-bottom: 10px">
+        <div class="row">
           <div class="col-4 fieldTitle">MOBSlide OpName:</div>
           <div class="col">
             <input matInput id="mobslideopname" class="fieldInput" [(ngModel)]="selOp.mobslide_opname" maxlength="50" oninput="this.value = this.value.toUpperCase()"/>
           </div>
         </div>
+        <div class="row">
+          <div class="col-r fieldTitle">COCOM ID:</div>
+          <div class="col">
+            <input matInput id="cocomid" class="fieldInput" [(ngModel)]="selOp.cocom_id" oninput="this.value = this.value.toUpperCase()"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-r fieldTitle">CAMP ID:</div>
+          <div class="col">
+            <input matInput id="campid" class="fieldInput" [(ngModel)]="selOp.campid" oninput="this.value = this.value.toUpperCase()"/>
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 10px">
+          <div class="col-r fieldTitle">PROJ CODE:</div>
+          <div class="col">
+            <input matInput id="projcode" class="fieldInput" [(ngModel)]="selOp.projcode" oninput="this.value = this.value.toUpperCase()"/>
+          </div>
+        </div>
+
         <div class="row">
           <table style="width: 75%; text-align: center; margin-left: 50px;">
             <tr>

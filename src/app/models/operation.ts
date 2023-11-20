@@ -10,4 +10,7 @@ export class Operation {
     sptcmd: string;
     funding: string;
     mobslide_opname: string;
+    cocom_id?: number;
+    campid: string;
+    projcode: string;
 }

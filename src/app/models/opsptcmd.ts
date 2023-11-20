@@ -7,4 +7,7 @@ export class OpSptCmd {
   unitrqmt_visible: boolean;
   tonipr: boolean;
   crc: boolean;
+  cocom_id?: number;
+  campid: string;
+  projcode: string;
 }

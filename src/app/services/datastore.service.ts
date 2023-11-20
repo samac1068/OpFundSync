@@ -18,7 +18,7 @@ export class DatastoreService {
   //Variables
   private _passKey: string = "4A3F6BD3-61FB-467B-83D0-0EFBAF72AFC4";
   private _devKey = "6A586E327235753778214125442A472D";
-  private _appVersion: string = '2.1.23.0911';
+  private _appVersion: string = '2.1.23.1120';
   private _bearerToken: string = "";
 
   system: System = new System();
@@ -113,7 +113,10 @@ export class DatastoreService {
               {"headerName": "TO NIPR", "field": "toNIPR", "cellRenderer": AGCheckBoxRendererComponent },
               {"headerName": "SPT CMD", "field": "sptcmd", "filter": true, floatingFilter: true },
               {"headerName": "FUNDING", "field": "funding", "filter": true, floatingFilter: true },
-              {"headerName": "MOBSLIDE NAME", "field": "mobslide_opname", "filter": true, floatingFilter: true }
+              {"headerName": "MOBSLIDE NAME", "field": "mobslide_opname", "filter": true, floatingFilter: true },
+              {"headerName": "COCOM ID", "field": "cocom_id", "filter": true, floatingFilter: true },
+              {"headerName": "CAMP ID", "field": "campid", "filter": true, floatingFilter: true },
+              {"headerName": "PROJ CODE", "field": "projcode", "filter": true, floatingFilter: true }
           ],
       "cycles":
           [
